@@ -16,7 +16,7 @@ import os
 from pathlib import Path
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
@@ -24,8 +24,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+
 
 
 SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^'
@@ -36,16 +35,16 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-AUTH_USER_MODEL = 'users.StudentProfile' # [cite: 14] Bu qatorni qo'shing
+AUTH_USER_MODEL = 'users.StudentProfile' 
 
-# Media fayllar sozlamalari (rasmlar, PDFlar uchun)
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Login URL (foydalanuvchi tizimga kirmagan bo'lsa qayerga yo'naltirish)
-LOGIN_URL = 'login' # Siz keyinchalik 'login' nomli URL yaratasiz
-LOGIN_REDIRECT_URL = 'home' # Tizimga kirgandan keyin qayerga yo'naltirish (masalan, home sahifaga)
-LOGOUT_REDIRECT_URL = 'login' # Tizimdan chiqqandan keyin qayerga yo'naltirish
+
+LOGIN_URL = 'login' 
+LOGIN_REDIRECT_URL = 'home' 
+LOGOUT_REDIRECT_URL = 'login' 
 
 
 # Application definition
@@ -57,8 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users', # Yangi ilova
-    'tests', # Yangi ilova
+    'users', 
+    'tests', 
 ]
 
 MIDDLEWARE = [
@@ -91,8 +90,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'student_test_platform_project.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -102,8 +100,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -121,8 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+
 
 LANGUAGE_CODE = 'uz-uz'
 
@@ -133,31 +129,24 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+
 
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# student_test_platform_project/settings.py
 
-# ...
-# student_test_platform_project/settings.py faylida
 
-# ... (faylning yuqori qismi)
 
-# Login URL (foydalanuvchi tizimga kirmagan bo'lsa qayerga yo'naltirish)
-LOGIN_URL = 'login' # Bu users/urls.py faylida nomlangan 'login' URL ga mos keladi
-LOGIN_REDIRECT_URL = 'test_list' # <<< ENG MUHIM O'ZGARISH: Testlar ro'yxatiga yo'naltiramiz
-LOGOUT_REDIRECT_URL = 'login' # Tizimdan chiqqandan keyin 'login' sahifasiga yo'naltiramiz
 
-# ... (faylning qolgan qismi)
 
-# Quyidagi takrorlangan qatorlarni O'CHIRING, agar ular mavjud bo'lsa:
-# LOGIN_URL = '/users/login/'
-# LOGIN_REDIRECT_URL = '/home/'
+LOGIN_URL = 'login' 
+LOGIN_REDIRECT_URL = 'test_list' # 
+LOGOUT_REDIRECT_URL = 'login' 
+
+
+
+
 
