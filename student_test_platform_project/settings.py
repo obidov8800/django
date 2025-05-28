@@ -33,6 +33,8 @@ SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^
 
 DEBUG = True
 
+ALLOWED_HOSTS = []
+
 
 AUTH_USER_MODEL = 'users.StudentProfile' # [cite: 14] Bu qatorni qo'shing
 
