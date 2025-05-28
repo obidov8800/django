@@ -27,14 +27,13 @@ STATICFILES_DIRS = [
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
-# Agar sizning loyihangizda foydalanuvchi modeli o'zgartirilgan bo'lsa, uni belgilash kerak.
-# Biz StudentProfile ni ishlatganimiz sababli bu muhim.
+
 AUTH_USER_MODEL = 'users.StudentProfile' # [cite: 14] Bu qatorni qo'shing
 
 # Media fayllar sozlamalari (rasmlar, PDFlar uchun)
