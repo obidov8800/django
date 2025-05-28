@@ -160,4 +160,4 @@ LOGOUT_REDIRECT_URL = 'login' # Tizimdan chiqqandan keyin 'login' sahifasiga yo'
 # Quyidagi takrorlangan qatorlarni O'CHIRING, agar ular mavjud bo'lsa:
 # LOGIN_URL = '/users/login/'
 # LOGIN_REDIRECT_URL = '/home/'
-# LOGOUT_REDIRECT_URL = '/users/login/'
+
