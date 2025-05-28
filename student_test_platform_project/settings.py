@@ -33,7 +33,6 @@ SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
 
 # Agar sizning loyihangizda foydalanuvchi modeli o'zgartirilgan bo'lsa, uni belgilash kerak.
 # Biz StudentProfile ni ishlatganimiz sababli bu muhim.
