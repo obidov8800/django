@@ -1,0 +1,27 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}Test Natijasi{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Test Natijasi</h1>
+
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">{{ test_result.test.title }}</h5>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Talaba:</strong> {{ test_result.student.full_name }}</li>
+            <li class="list-group-item"><strong>Topshirilgan vaqt:</strong> {{ test_result.completion_time|date:"Y-m-d H:i" }}</li>
+            <li class="list-group-item"><strong>To'plangan ball:</strong> {{ test_result.score }}</li>
+            <li class="list-group-item">
+                <strong>Bahosi:</strong>
+                <span style="color: {{ test_result.grade_color }}; font-weight: bold;">{{ test_result.grade }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<a href="{% url 'test_list' %}" class="btn btn-primary">Testlar ro'yxatiga qaytish</a>
+{% endblock %}

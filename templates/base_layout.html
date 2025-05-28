@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Talaba Test Platformasi{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {# Google Fonts - Roboto shriftini qo'shish #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Yengil kulrang fon */
+        }
+        .navbar {
+            background-color:rgb(85, 211, 115); /* Och yashil rang */
+        }
+        .footer {
+            background-color: rgb(85, 211, 115); /* Och yashil rang */
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: white; /* Footer matni rangini oq qilamiz */
+        }
+        .container {
+            padding-bottom: 10px; /* Footer uchun joy qoldirish */
+        }
+    </style>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'test_list' %}">Test Platformasi</a> {# Bu link home uchun #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto"> {# Chap tomondagi elementlar uchun #}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'test_list' %}">Testlar</a>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="navbar-nav ms-auto"> {# O'ng tomondagi elementlar uchun #}
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profil ({{ request.user.username }})</a> {# Profil linkini ham qo'shdik #}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Chiqish</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Kirish</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Ro'yxatdan o'tish</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    <h1 class="mb-4">Xush kelibsiz!</h1> {# Bu qism faqat content block bo'sh bo'lsa ko'rinadi #}
+    <p>Talaba test platformasiga xush kelibsiz. Tizimga kiring yoki ro'yxatdan o'ting.</p>
+    {% endblock %}
+</div>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; 2025 Talaba Test Platformasi</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
