@@ -26,7 +26,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['student-tests.onrender.com', 'localhost', '127.0.0.1']
 
