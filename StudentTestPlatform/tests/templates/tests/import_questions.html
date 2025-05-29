@@ -1,0 +1,49 @@
+{# tests/templates/tests/import_questions.html #}
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1 class="mb-4">{{ title }}</h1>
+
+    {% if messages %}
+        <ul class="messagelist">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p>
+        **Diqqat:** Siz hozir <strong>{{ test_schedule.title }}</strong> testi uchun savollarni import qilyapsiz.
+        Import qilinayotgan savollar mavjud savollarga qo'shiladi.
+    </p>
+    <p>
+        Fayl ustunlari quyidagicha bo'lishi shart:
+        <code>Question Text</code>, <code>Option 1</code>, <code>Option 2</code>, <code>Option 3</code>, <code>Option 4</code>, <code>Correct Option Number (1-4)</code>
+    </p>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="module aligned">
+            <div class="form-row">
+                {{ form.file.label_tag }}
+                {{ form.file }}
+                {% if form.file.help_text %}
+                    <p class="help">{{ form.file.help_text }}</p>
+                {% endif %}
+                {% if form.file.errors %}
+                    <ul class="errorlist">{% for error in form.file.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                {% endif %}
+            </div>
+        </fieldset>
+        
+        <div class="submit-row">
+            <input type="submit" value="Yuklash va Import qilish" class="default" name="_submit">
+            <a href="{% url 'admin:tests_testschedule_change' test_schedule.id %}" class="button cancel-link">Bekor qilish</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

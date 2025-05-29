@@ -1,0 +1,35 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}Ro'yxatdan o'tish{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header" style="background-color: silver;">
+                <h4 class="mb-0">Ro'yxatdan o'tish</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <div class="form-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary" style="background-color: #28a745; border-color: #28a745;">Ro'yxatdan o'tish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

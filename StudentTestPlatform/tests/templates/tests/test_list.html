@@ -1,0 +1,53 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}Mavjud Testlar{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Mavjud Testlar</h1>
+
+<div class="row">
+    {% if test_data %}
+        {% for data in test_data %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">{{ data.test.title }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>Guruh:</strong> {{ data.test.group.name }}<br>
+                            <strong>Savollar soni:</strong> {{ data.test.num_questions }}<br>
+                            <strong>Ochilish vaqti:</strong> {{ data.test.open_time|date:"Y-m-d H:i" }}<br>
+                            <strong>Yopilish vaqti:</strong> {{ data.test.close_time|date:"Y-m-d H:i" }}<br>
+                        </p>
+                        {% if data.test.is_active %}
+                            {% if data.has_taken %}
+                                <span class="badge bg-secondary">Test topshirilgan</span>
+                                {# QATORNI O'ZGARTIRAMIZ #}
+                                <a href="{% url 'test_result_detail' data.result_id %}" class="btn btn-sm btn-outline-secondary mt-2">Natijani ko'rish</a>
+                            {% else %}
+                                <a href="{% url 'take_test' data.test.id %}" class="btn btn-primary">Testni boshlash</a>
+                            {% endif %}
+                        {% elif data.test.is_upcoming %}
+                            <span class="badge bg-warning text-dark">Kutilmoqda</span>
+                        {% elif data.test.is_finished %}
+                            <span class="badge bg-danger">Test tugagan</span>
+                            {% if data.has_taken %}
+                                {# QATORNI O'ZGARTIRAMIZ #}
+                                <a href="{% url 'test_result_detail' data.result_id %}" class="btn btn-sm btn-outline-secondary mt-2">Natijani ko'rish</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                Sizning guruhingiz uchun hozircha testlar mavjud emas.
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

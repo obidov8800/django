@@ -1,0 +1,39 @@
+/* static/css/style.css */
+
+/* Umumiy shrift sozlamalari */
+body {
+    font-family: 'Roboto', sans-serif; /* Google Fonts'dan 'Roboto' ni ishlatamiz */
+    background-color: #f8f9fa; /* Yengil kulrang fon (sizda bor edi) */
+}
+
+/* Navbar sozlamalari */
+.navbar {
+    background-color: rgb(85, 211, 115); /* Och yashil rang (sizda bor edi) */
+}
+
+/* Footer sozlamalari */
+.footer {
+    background-color: rgb(85, 211, 115); /* Och yashil rang (sizda bor edi) */
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white; /* Footer matni rangini oq qilamiz */
+}
+
+/* Konteynerning pastki qismiga joy qoldirish */
+.container {
+    padding-bottom: 70px; /* Footer uchun yetarli joy qoldirish */
+}
+
+/* Qo'shimcha style: kartalarni markazlashtirish yoki to'g'ri joylashishini ta'minlash uchun */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}

@@ -1,0 +1,80 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}Mening Profilim{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Mening Profilim</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Profil ma'lumotlari</h5>
+            </div>
+            <div class="card-body text-center">
+                {% if student_profile.profile_picture %}
+                    <img src="{{ student_profile.profile_picture.url }}" class="img-fluid rounded-circle mb-3" alt="Profil rasmi" style="width: 150px; height: 150px; object-fit: cover;">
+                {% else %}
+                    {# Agar default_profile.png mavjud bo'lmasa, uni static/images/ ga joylashtiring #}
+                    <img src="{% static 'images/default_profile.png' %}" class="img-fluid rounded-circle mb-3" alt="Default rasm" style="width: 150px; height: 150px; object-fit: cover;">
+                {% endif %}
+                {# Full Nameni ham alohida chiqarishimiz mumkin #}
+                <h4>{{ student_profile.full_name }}</h4>
+                <ul class="list-group list-group-flush text-start mt-3">
+                    <li class="list-group-item"><strong>Foydalanuvchi nomi:</strong> {{ student_profile.username }}</li>
+                    <li class="list-group-item"><strong>Guruh:</strong> {{ group_name }}</li>
+                    <li class="list-group-item"><strong>To'liq ism (F.I.Sh.):</strong> {{ student_profile.full_name }}</li> {# QO'SHILDI #}
+                    <li class="list-group-item"><strong>Pasport raqami:</strong> {{ student_profile.passport_number }}</li> {# QO'SHILDI #}
+                    <li class="list-group-item"><strong>Telefon raqami:</strong> {{ student_profile.phone_number }}</li>
+                    <li class="list-group-item"><strong>Manzil:</strong> {{ student_profile.address }}</li>
+                    <li class="list-group-item"><strong>Ro'yxatdan o'tgan vaqt:</strong> {{ student_profile.date_joined|date:"Y-m-d H:i" }}</li> {# QO'SHILDI #}
+                </ul>
+                <a href="#" class="btn btn-sm btn-outline-info mt-3 disabled">Profilni tahrirlash (tez orada)</a>
+            </div>
+        </div>
+    </div>
+
+ <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Topshirilgan test natijalari</h5>
+            </div>
+            <div class="card-body">
+                {% if student_results %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Test nomi</th>
+                                    <th>Ball</th>
+                                    <th>Baho</th>
+                                    <th>Topshirilgan vaqt</th>
+                                    <th>Amal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for result in student_results %}
+                                    <tr>
+                                        <td>{{ result.test.title }}</td>
+                                        <td>{{ result.score }}</td>
+                                        <td><span style="color: {{ result.grade_color }}; font-weight: bold;">{{ result.grade }}</span></td>
+                                        <td>{{ result.completion_time|date:"Y-m-d H:i" }}</td>
+                                        <td>
+                                            <a href="{% url 'test_result_detail' result.id %}" class="btn btn-sm btn-outline-primary">Natijani ko'rish</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info" role="alert">
+                        Siz hali birorta ham test topshirmagansiz.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div><br><br><br><br><br><br>  
+{% endblock %}
