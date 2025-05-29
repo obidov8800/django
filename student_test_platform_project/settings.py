@@ -13,12 +13,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+if os.getenv('ON_RENDER', 'False') == 'True':
+    # Render.com dagi disk yo'li
+    MEDIA_ROOT = '/var/data/media' # Render da belgilagan Mount Path + media papkasi
+else:
+    # Lokal rivojlanish muhiti uchun
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
