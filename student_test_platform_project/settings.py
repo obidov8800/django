@@ -24,7 +24,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 SECRET_KEY = 'django-insecure-n1+d7h2*3+-ob63*jxzqqi#gzk*4&#x3d&3=muidb02z+8-84^'
